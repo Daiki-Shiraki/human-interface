@@ -1,0 +1,1 @@
+HumanInterface用のスクリプト
