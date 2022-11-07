@@ -4,14 +4,16 @@ import openpyxl
 from openpyxl.styles.fonts import Font
 import tkinter
 from tkinter import filedialog
-import os
-import re
+import methods as mt
 
 
 def main():
     print("得点の入ったエクセルファイルを選択してください")
     file_path = tkinter.filedialog.askopenfilename(filetypes = [('エクセルファイル','xlsx')])
-    name = GetOutputFileName(file_path)
+    if(file_path == None):
+        print("パスが指定されていません")
+        return
+    name = mt.GetOutputFileName(file_path)
     score_wb = pd.ExcelFile(file_path)
     score_wb_name = score_wb.sheet_names
     score_sheet_df = score_wb.parse(score_wb_name[0])
@@ -21,7 +23,7 @@ def main():
     output_sheet_df = output_wb.parse(output_wb_name[0])
     
     for index, row in score_sheet_df.iterrows():
-        number = Number2String(row['学籍番号（半角）']) 
+        number = mt.Number2String(row['学籍番号（半角）']) 
         row = row[1:11]
         index = output_sheet_df.query('学生ID == \"' + number + '\"').index[0]       
         for i, out_row in enumerate(row):
@@ -45,18 +47,6 @@ def main():
             ws1[cell.coordinate].font = font
     wb1.save(name)
     return
-
-def GetOutputFileName(file_path):
-    text = os.path.basename(file_path)
-    text = re.findall(r"\d+", text)
-    text = "_".join(text)+'.xlsx'
-    return text
-
-def Number2String(number):
-    if(isinstance(number, str)):
-        number = number.replace(" ", '')
-        number = int(number)
-    return str(number)
 
 if __name__ == "__main__":
     main()
