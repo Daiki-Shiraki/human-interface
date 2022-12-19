@@ -21,7 +21,7 @@ def main():
     
     for index, row in score_sheet_df.iterrows():
         number = mt.Number2String(row['学籍番号（半角）']) 
-        row = row[1:11]
+        row = row[2:12]
         index = output_sheet_df.query('学生ID == \"' + number + '\"').index[0]       
         for i, out_row in enumerate(row):
             output_sheet_df.iloc[index, i + 1] = row[i]

@@ -24,10 +24,13 @@ def main():
     
     for index, row in score_sheet_df.iterrows():
         number = mt.Number2String(row['学籍番号（半角）']) 
-        row = row[1:11]
+        row = row[2:12]
+        print(row)
         index = output_sheet_df.query('学生ID == \"' + number + '\"').index[0]       
+        print("-----\n")
         for i, out_row in enumerate(row):
-            output_sheet_df.iloc[index, i + 1] = row[i]
+            output_sheet_df.iloc[index, i + 1] = out_row
+        print("-----\n")
         output_sheet_df.iloc[index, 12] = '=AVERAGE(B'+ str(index + 2) + ':K' + str(index + 2) + ')'
     for i in range(12):
         output_sheet_df.iloc[77, i + 1] = '=AVERAGE('+ chr(66 + i) +'2:' + chr(66 + i) + '77)'
