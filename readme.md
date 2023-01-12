@@ -1,7 +1,10 @@
-ヒュ◯マン○ンタフェース特論(2022)用のスクリプト
+大学講義の表登録を自動化するためのスクリプト
+--
+### How2Use
+- Cloneして同じディレクトリに評価まとめ（.xlsx）を保存する
+- mergeXlsx.py or mergeXlsxGUI.pyのどちらかを実行
+- 提出に必要なファイルが出力されます
 
-Cloneして同じディレクトリに評価まとめ（.xlsx）をぶちこめば学生IDに値を全対応させた結果が出てくる（はず）
-
-mergeXlsx.pyとmergeXlsxGUI.pyの違いはパスの指定をGUIで行えるかどうかの違い
-
-tkinterをbrew install でバージョン指定してする必要があるからめんどくさいけど、せっかくなのでGUIを使いたかった
+### 備考
+- mergeXlsx.pyとmergeXlsxGUI.pyの違いはパスの指定をGUIで行えるかどうかの違い
+    - GUIの方はtkinterをbrew install でバージョン指定してインストールする必要あり
